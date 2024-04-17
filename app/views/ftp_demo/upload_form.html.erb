@@ -1,0 +1,14 @@
+<h1>FTP Demo - Multiple Video Upload</h1>
+
+<%= form_tag ftp_demo_upload_path, multipart: true do %>
+  <%= file_field_tag 'videos[]', multiple: true %>
+  <%= submit_tag 'Upload Videos' %>
+<% end %>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end %>
