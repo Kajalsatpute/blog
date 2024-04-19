@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   # get 'books/:id/refresh', to: 'books#refresh', as: 'refresh_book'
   get 'ftp_demo/upload_form'
   post 'ftp_demo/upload'
+  resources :users
 end
