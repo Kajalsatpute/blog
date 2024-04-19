@@ -5,7 +5,6 @@ class FtpDemoController < ApplicationController
   end
 
   def upload
-    # debugger
     ftp = Net::FTP.new
 
     # FTP server details (replace with your server information)
@@ -24,7 +23,6 @@ class FtpDemoController < ApplicationController
         ftp.chdir(destination_directory)
 
         # Upload the file
-        debugger
         a = ftp.putbinaryfile(uploaded_file.tempfile, uploaded_file.original_filename)
         flash[:notice] = 'Files uploaded successfully!'
         Rails.logger('Files uploaded successfully!')
