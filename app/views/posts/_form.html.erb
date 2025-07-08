@@ -1,15 +1,53 @@
-<%= form_with(model: @post, local: true) do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="border p-4">
+      <h2 class="text-center mb-4">Post</h2>
 
-  <%= form.label :description %>
-  <%= form.text_area :description %>
+      <%= form_with(model: @post, local: true) do |form| %>
+        <% if @post.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h3><%= pluralize(@post.errors.count, "error") %> prohibited this user task from being saved:</h3>
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <%= form.label :images %>
-  <%= form.file_field :images, multiple: true %>
+        <div class="form-group mb-4">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: "form-control" %>
+        </div>
 
-  <%= form.label :tag_list, "Tags (separate with commas)" %>
-  <%= form.text_field :tag_list %>
+        <div class="form-group mb-4">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
 
-  <%= form.submit %>
-<% end %>
+        <div class="form-group mb-4">
+          <%= form.label :tag_list %>
+          <%= form.text_field :tag_list, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-4">
+					<%= form.label :images %>
+  				<%= form.file_field :images, multiple: true, class: "form-control" %>
+        </div>
+
+        <div class="text-center mb-4">
+          <%= link_to 'Back', posts_path, class: "btn btn-secondary mr-2" %>
+
+          <% if action_name == 'new' %>
+            <%= form.submit "Create Post", class: "btn btn-primary" %>
+          <% elsif action_name == 'show' %>
+            <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-secondary" %>
+          <% elsif action_name == 'edit' %>
+            <%= form.submit "Update Post", class: "btn btn-primary" %>
+            <%= link_to 'Show', @post, class: "btn btn-primary ml-2" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
